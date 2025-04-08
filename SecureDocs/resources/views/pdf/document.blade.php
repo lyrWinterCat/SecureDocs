@@ -1,7 +1,31 @@
-<h1>{{ $title }}</h1>
-<p>이 문서는 기밀문서입니다.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        @font-face {
+            font-family: 'NanumGothic';
+            font-weight: normal;
+            font-style: normal;
+            src: url("{{ public_path('fonts/NanumGothic.ttf') }}") format('truetype');
+        }
+        
+        body {
+            font-family: 'NanumGothic', sans-serif !important;
+        }
+        
+        h1, p, footer {
+            font-family: 'NanumGothic', sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ $title }}</h1>
+    <p>This is Secret Document.</p>
 
-<footer>
-    다운로드 사용자: {{ $user->email }} <br>
-    다운로드 시간: {{ $timestamp }}
-</footer>
+    <footer>
+        Download User: {{ $user->email }} <br>
+        Download time: {{ $timestamp }}
+    </footer>
+</body>
+</html>
