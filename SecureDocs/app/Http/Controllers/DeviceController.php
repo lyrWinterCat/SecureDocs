@@ -16,11 +16,14 @@ class DeviceController extends Controller
         $request->validate([
             'device_id' => 'required|string'
         ]);
-
+    
         $user = auth()->user();
         $user->device_id = $request->device_id;
         $user->save();
-
+    
+        // 세션에 디바이스 ID 저장
+        session(['device_id' => $request->device_id]);
+    
         return redirect('/documents');
     }
 }

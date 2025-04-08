@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Middleware\CheckDeviceId; // 미들웨어 클래스 직접 임포트
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/register-device', [DeviceController::class, 'register']);
 });
 
-Route::middleware(['auth', 'check.device'])->group(function () {
+// 미들웨어를 클래스 이름으로 직접 참조
+Route::middleware(['auth', CheckDeviceId::class])->group(function () {
     Route::get('/documents', [DocumentController::class, 'index']);
     Route::get('/documents/{id}/download', [DocumentController::class, 'download']);
 });

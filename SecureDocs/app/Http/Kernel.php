@@ -30,8 +30,8 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    protected $routeMiddleware = [
+    protected $middlewareAliases = [  // $routeMiddleware에서 $middlewareAliases로 변경
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'check.device' => \App\Http\Middleware\CheckDeviceId::class, // ← 추가할 부분
+        'check.device' => \App\Http\Middleware\CheckDeviceId::class,
     ];
 }
